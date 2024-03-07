@@ -7,7 +7,7 @@ class TaxiSerializer(serializers.ModelSerializer):
         fields = ['id', 'plate']
         read_only_fields = ['id']  # id is read-only
 
-class TrajectorySerializer(serializers.ModelSerializer):
+class TrayectorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Trayectory
         fields = ['id', 'date', 'taxi_id', 'latitude', 'longitude']
