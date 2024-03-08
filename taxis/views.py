@@ -50,30 +50,12 @@ def taxi_detail(request, pk, format=None):
         taxi.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-@api_view(['GET', 'POST'])
-def trayectory_list(request, format=None):
-    """
-    List all trayectories, or create a new trayectory.
-    """
-    if request.method == 'GET':
-        trayectories = Trayectory.objects.all()
-        paginator = PageNumberPagination()
-        result_page = paginator.paginate_queryset(trayectories, request)
-        serializer = TrayectorySerializer(result_page, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = TrayectorySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 @api_view(['GET'])
-def taxi_trayectories(request, taxi_id, date, format=None):
+def trayectories_list(request, taxi_id, date, format=None):
     """
     Retrieve trayectories of a taxi for a given date.
     """
+    print(request)
     try:
         trayectories = Trayectory.objects.filter(taxi_id=taxi_id, date__date=date)
         serializer = TrayectorySerializer(trayectories, many=True)
