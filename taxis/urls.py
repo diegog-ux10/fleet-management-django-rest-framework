@@ -3,9 +3,9 @@ from taxis import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    path('taxis/', views.taxi_list),
-    path('taxis/<int:pk>/', views.taxi_detail),
-    path('trayectories/<int:taxi_id>/<str:date>/', views.trayectories_list),
+    path('taxis/', views.TaxiList.as_view()),
+    path('taxis/<int:pk>/', views.TaxiDetails.as_view()),
+    path('trayectories/', views.TrayectoriesList.as_view()),
     path('trayectories/<int:pk>/', views.trayectory_detail),
 ]
 
