@@ -11,7 +11,7 @@ from taxis.models import Taxi, Trayectory
 
 class TaxiList(ListAPIView):
     """
-    List all taxis, or create a new taxi.
+    List all taxis
     """
 
     queryset = Taxi.objects.all()
@@ -20,7 +20,7 @@ class TaxiList(ListAPIView):
 
 class TaxiDetails(RetrieveAPIView):
     """
-    Retrieve, update or delete a code taxis.
+    Retrieve taxi by id
     """
 
     queryset = Taxi.objects.all()

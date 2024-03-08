@@ -6,7 +6,7 @@ urlpatterns = [
     path('taxis/', views.TaxiList.as_view()),
     path('taxis/<int:pk>/', views.TaxiDetails.as_view()),
     path('trayectories/', views.TrayectoriesList.as_view()),
-    path('trayectories/<int:pk>/', views.trayectory_detail),
+    path('trayectories/<int:pk>/', views.TrayectoryDetails.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
