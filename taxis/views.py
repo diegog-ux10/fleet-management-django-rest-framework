@@ -13,9 +13,15 @@ class TaxiList(ListAPIView):
     """
     List all taxis
     """
-
     queryset = Taxi.objects.all()
     serializer_class = TaxiSerializer
+    
+    def post(self, request, format=None):
+        serializer = TaxiSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class TaxiDetails(RetrieveAPIView):
@@ -57,6 +63,13 @@ class TrayectoriesList(ListAPIView):
                 )
 
         return queryset
+    
+    def post(self, request, format=None):
+        serializer = TrayectorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class TrayectoryDetails(RetrieveAPIView):
